@@ -24,6 +24,6 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun LoadingScreenPreview() {
     JazzHistoryBookshelfTheme {
-        LoadingScreen(modifie)
+        LoadingScreen()
     }
 }
