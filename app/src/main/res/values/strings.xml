@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Jazz History Bookshelf</string>
+    <string name="book_card_image">Book card image</string>
 </resources>
