@@ -14,7 +14,7 @@ fun HomeScreen(uiState: JazzHistoryBookUiState, modifier: Modifier = Modifier) {
     when (uiState) {
         is JazzHistoryBookUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         is JazzHistoryBookUiState.Success -> Bookshelf(
-            uiState.books,
+            books = uiState.books,
             modifier = modifier.fillMaxWidth()
         )
 
