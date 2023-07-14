@@ -9,6 +9,7 @@ buildscript {
         compose_navigation_version = "2.6.0"
         moshi_version = "1.11.0"
         converter_moshi_version = "2.9.0"
+        live_data_version = "1.4.3"
     }
 }
 

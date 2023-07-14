@@ -11,16 +11,23 @@ import com.practice.jazzhistorybookshelf.R
 import com.practice.jazzhistorybookshelf.data.DataSource
 import com.practice.jazzhistorybookshelf.models.JazzHistoryBook
 import com.practice.jazzhistorybookshelf.ui.theme.JazzHistoryBookshelfTheme
+import com.practice.jazzhistorybookshelf.utils.Utils
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookCard(jazzHistoryBook: JazzHistoryBook, modifier: Modifier = Modifier) {
-    val image = jazzHistoryBook.volumeInfo.imageLinks?.smallThumbnail?.replace("http:", "https:")
+fun BookCard(
+    modifier: Modifier = Modifier,
+    jazzHistoryBook: JazzHistoryBook,
+    onClick: (id: String) -> Unit
+) {
+    val image = Utils.createImageUrl(jazzHistoryBook.volumeInfo.imageLinks?.smallThumbnail)
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.small,
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimensionResource(id = R.dimen.card_elevation)
-        )
+        ),
+        onClick = { onClick(jazzHistoryBook.id) }
     ) {
         ImageViewer(
             image = image,
@@ -34,6 +41,6 @@ fun BookCard(jazzHistoryBook: JazzHistoryBook, modifier: Modifier = Modifier) {
 @Composable
 private fun BookCardPreview() {
     JazzHistoryBookshelfTheme {
-        BookCard(jazzHistoryBook = DataSource.book1)
+        BookCard(jazzHistoryBook = DataSource.book1) {}
     }
 }

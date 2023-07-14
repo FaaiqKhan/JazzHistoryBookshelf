@@ -21,7 +21,7 @@ import com.practice.jazzhistorybookshelf.utils.Utils
 fun BookCardDetails(
     modifier: Modifier = Modifier,
     jazzHistoryBook: JazzHistoryBook,
-    onClick: (selectedBook: JazzHistoryBook) -> Unit
+    onClick: (id: String) -> Unit
 ) {
     val notAvailableText = "Not available"
     val image = Utils.createImageUrl(jazzHistoryBook.volumeInfo.imageLinks?.smallThumbnail)
@@ -33,7 +33,7 @@ fun BookCardDetails(
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimensionResource(id = R.dimen.card_elevation)
         ),
-        onClick = { onClick(jazzHistoryBook) }
+        onClick = { onClick(jazzHistoryBook.id) }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

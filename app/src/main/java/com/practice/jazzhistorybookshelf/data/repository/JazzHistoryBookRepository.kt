@@ -4,9 +4,10 @@ import com.practice.jazzhistorybookshelf.data.network.JazzHistoryBookApiService
 import com.practice.jazzhistorybookshelf.models.JazzHistoryBook
 import javax.inject.Inject
 
-fun interface JazzHistoryBookRepository {
+interface JazzHistoryBookRepository {
 
     suspend fun getJazzHistoryBooks(): List<JazzHistoryBook>
+    suspend fun getJazzHistoryBook(id: String): JazzHistoryBook
 }
 
 class DefaultJazzHistoryBookRepository @Inject constructor(
@@ -16,5 +17,9 @@ class DefaultJazzHistoryBookRepository @Inject constructor(
     override suspend fun getJazzHistoryBooks(): List<JazzHistoryBook> {
         val books = jazzHistoryBookApiService.fetchJazzHistoryBooks()
         return books.items
+    }
+
+    override suspend fun getJazzHistoryBook(id: String): JazzHistoryBook {
+        return jazzHistoryBookApiService.fetchJazzHistoryBook(id)
     }
 }
