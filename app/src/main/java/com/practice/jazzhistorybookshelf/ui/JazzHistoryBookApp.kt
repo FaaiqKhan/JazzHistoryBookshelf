@@ -2,6 +2,7 @@ package com.practice.jazzhistorybookshelf.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -10,11 +11,11 @@ import com.practice.jazzhistorybookshelf.ui.screens.homeScreen.HomeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun JazzHistoryBookApp(modifier: Modifier = Modifier) {
+fun JazzHistoryBookApp(windowWidthSizeClass: WindowWidthSizeClass, modifier: Modifier = Modifier) {
     Scaffold(
         topBar = { JazzHistoryBookAppTopBar() }
     ) {
-        HomeScreen(modifier = modifier.padding(it))
+        HomeScreen(modifier = modifier.padding(it), windowWidthSize = windowWidthSizeClass)
     }
 }
 
