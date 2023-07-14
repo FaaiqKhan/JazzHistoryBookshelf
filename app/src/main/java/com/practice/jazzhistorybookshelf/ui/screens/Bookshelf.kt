@@ -4,9 +4,6 @@ import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -19,7 +16,6 @@ import com.practice.jazzhistorybookshelf.ui.screens.errorScreen.ErrorScreen
 import com.practice.jazzhistorybookshelf.ui.screens.loadingScreen.LoadingScreen
 import com.practice.jazzhistorybookshelf.ui.states.BookUiState
 import com.practice.jazzhistorybookshelf.ui.theme.JazzHistoryBookshelfTheme
-import com.practice.jazzhistorybookshelf.utils.Utils
 
 @Composable
 fun Bookshelf(
@@ -45,7 +41,11 @@ fun Bookshelf(
 }
 
 @Composable
-fun BookshelfMedium(modifier: Modifier = Modifier, books: List<JazzHistoryBook>) {
+fun BookshelfMedium(
+    modifier: Modifier = Modifier,
+    books: List<JazzHistoryBook>,
+    onClick: (id: String) -> Unit
+) {
     LazyVerticalGrid(
         modifier = modifier,
         columns = GridCells.Fixed(1),
@@ -58,7 +58,7 @@ fun BookshelfMedium(modifier: Modifier = Modifier, books: List<JazzHistoryBook>)
         )
     ) {
         items(items = books, key = { book -> book.id }) {
-            BookCardDetails(jazzHistoryBook = it, onClick = { })
+            BookCardDetails(jazzHistoryBook = it, onClick = onClick)
         }
     }
 }
@@ -97,42 +97,13 @@ fun BookshelfExpanded(
         ) {
             when (bookUIState) {
                 is BookUiState.Loading -> LoadingScreen(modifier = Modifier.fillMaxSize())
-                is BookUiState.Success -> BookDetails(book = bookUIState.book)
+                is BookUiState.Success -> BookDetails(bookUiState = bookUIState)
                 is BookUiState.Error -> ErrorScreen(
                     retryAction = { },
                     modifier = Modifier.fillMaxSize()
                 )
             }
         }
-    }
-}
-
-@Composable
-fun BookDetails(book: JazzHistoryBook) {
-    Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
-    ) {
-        Row {
-            ImageViewer(
-                image = Utils.createImageUrl(book.volumeInfo.imageLinks?.thumbnail),
-                modifier = Modifier
-                    .height(dimensionResource(id = R.dimen.card_image_height))
-                    .width(dimensionResource(id = R.dimen.card_small_image_width))
-            )
-            Column(
-                modifier = Modifier.padding(
-                    start = dimensionResource(id = R.dimen.list_content_padding)
-                )
-            ) {
-                Text(text = "Title: " + book.volumeInfo.title)
-                Text(text = "Author(s): " + book.volumeInfo.authors?.first())
-                Text(text = "Pages: " + book.volumeInfo.pageCount)
-                Text(text = "Publisher: " + book.volumeInfo.publisher)
-                Text(text = "Published date: " + book.volumeInfo.publishedDate)
-                Text(text = "Language: " + book.volumeInfo.language)
-            }
-        }
-        Text(text = "Description: " + book.volumeInfo.description)
     }
 }
 
@@ -149,6 +120,9 @@ private fun BookshelfPreview() {
 @Composable
 private fun BookshelfExpandedPreview() {
     JazzHistoryBookshelfTheme {
-        BookshelfExpanded(books = DataSource.books, bookUIState = BookUiState.Loading) {}
+        BookshelfExpanded(
+            books = DataSource.books,
+            bookUIState = BookUiState.Success(DataSource.book1)
+        ) {}
     }
 }
