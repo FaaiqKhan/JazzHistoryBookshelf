@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_elevation">6dp</dimen>
-    <dimen name="card_image_width">180dp</dimen>
+    <dimen name="card_image_width">170dp</dimen>
     <dimen name="card_image_height">190dp</dimen>
     <dimen name="grid_cell">120dp</dimen>
     <dimen name="list_content_padding">8dp</dimen>
+    <dimen name="card_height">170dp</dimen>
+    <dimen name="card_small_image_width">120dp</dimen>
 </resources>
