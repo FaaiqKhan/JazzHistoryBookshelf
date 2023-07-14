@@ -18,6 +18,10 @@ class HomeScreenViewModel @Inject constructor(private val repository: JazzHistor
         private set
 
     init {
+        getJazzHistory()
+    }
+
+    fun getJazzHistory() {
         viewModelScope.launch {
             uiState = try {
                 JazzHistoryBookUiState.Success(books = repository.getJazzHistoryBooks())

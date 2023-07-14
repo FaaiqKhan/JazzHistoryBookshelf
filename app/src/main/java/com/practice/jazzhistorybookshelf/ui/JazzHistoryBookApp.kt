@@ -16,8 +16,7 @@ fun JazzHistoryBookApp(modifier: Modifier = Modifier) {
     Scaffold(
         topBar = { JazzHistoryBookAppTopBar() }
     ) {
-        val homeViewModel: HomeScreenViewModel = viewModel()
-        HomeScreen(uiState = homeViewModel.uiState, modifier = modifier.padding(it))
+        HomeScreen(modifier = modifier.padding(it))
     }
 }
 
