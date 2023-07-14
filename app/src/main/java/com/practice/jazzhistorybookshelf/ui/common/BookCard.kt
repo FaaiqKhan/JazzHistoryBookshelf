@@ -20,7 +20,7 @@ fun BookCard(jazzHistoryBook: JazzHistoryBook, modifier: Modifier = Modifier) {
     val image = jazzHistoryBook.volumeInfo.imageLinks?.smallThumbnail?.replace("http:", "https:")
     Card(
         modifier = modifier,
-        shape = MaterialTheme.shapes.large,
+        shape = MaterialTheme.shapes.small,
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimensionResource(id = R.dimen.card_elevation)
         )

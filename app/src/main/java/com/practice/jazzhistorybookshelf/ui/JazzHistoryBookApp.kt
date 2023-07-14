@@ -5,10 +5,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.practice.jazzhistorybookshelf.R
 import com.practice.jazzhistorybookshelf.ui.screens.homeScreen.HomeScreen
-import com.practice.jazzhistorybookshelf.ui.screens.homeScreen.HomeScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,8 +26,12 @@ fun JazzHistoryBookAppTopBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 text = stringResource(id = R.string.bookshelf),
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onPrimary
             )
-        }
+        },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        )
     )
 }
