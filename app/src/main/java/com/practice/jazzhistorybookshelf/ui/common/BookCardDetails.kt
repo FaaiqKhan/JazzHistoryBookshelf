@@ -48,22 +48,20 @@ fun BookCardDetails(
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.list_content_padding)),
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = "Title: " + (jazzHistoryBook.volumeInfo.title ?: notAvailableText),
-                    style = MaterialTheme.typography.titleMedium
+                MultiStyleText(
+                    text1 = "Title: ",
+                    text2 = jazzHistoryBook.volumeInfo.title ?: notAvailableText
                 )
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.list_content_padding)))
-                Text(
-                    text = "Author(s): " + (jazzHistoryBook.volumeInfo.authors?.first()
-                        ?: notAvailableText),
-                    style = MaterialTheme.typography.bodyLarge
+                MultiStyleText(
+                    text1 = "Author(s): ",
+                    text2 = jazzHistoryBook.volumeInfo.authors?.first() ?: notAvailableText
                 )
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.list_content_padding)))
-                Text(
-                    text = "Description: " + (jazzHistoryBook.volumeInfo.description
-                        ?: notAvailableText),
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.bodyMedium
+                MultiStyleText(
+                    text1 = "Description: ",
+                    text2 = jazzHistoryBook.volumeInfo.description ?: notAvailableText,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }

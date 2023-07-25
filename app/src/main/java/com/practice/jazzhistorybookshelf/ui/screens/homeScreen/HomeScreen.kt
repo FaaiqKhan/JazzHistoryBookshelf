@@ -1,13 +1,14 @@
 package com.practice.jazzhistorybookshelf.ui.screens.homeScreen
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.practice.jazzhistorybookshelf.R
 import com.practice.jazzhistorybookshelf.ui.common.BookDetails
 import com.practice.jazzhistorybookshelf.ui.screens.*
 import com.practice.jazzhistorybookshelf.ui.screens.errorScreen.ErrorScreen
@@ -70,7 +71,10 @@ fun HomeScreen(
         }
         composable(Screens.BOOK_DETAILS.name) {
             val bookState by homeViewModel.bookUiState.collectAsState()
-            BookDetails(bookUiState = bookState, modifier = modifier)
+            BookDetails(
+                bookUiState = bookState,
+                modifier = modifier.padding(all = dimensionResource(id = R.dimen.list_content_padding))
+            )
         }
     }
 }

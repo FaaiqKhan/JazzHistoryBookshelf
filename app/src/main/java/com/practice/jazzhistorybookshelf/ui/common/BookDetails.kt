@@ -3,6 +3,7 @@ package com.practice.jazzhistorybookshelf.ui.common
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,31 +30,72 @@ fun BookDetails(modifier: Modifier = Modifier, bookUiState: BookUiState) {
                             .width(dimensionResource(id = R.dimen.card_small_image_width))
                     )
                     Column(
-                        modifier = Modifier.padding(
-                            start = dimensionResource(id = R.dimen.list_content_padding)
-                        )
+                        modifier = Modifier.padding(start = dimensionResource(id = R.dimen.list_content_padding))
                     ) {
-                        Text(text = "Title: " + bookUiState.book.volumeInfo.title)
-                        Text(text = "Author(s): " + bookUiState.book.volumeInfo.authors?.first())
-                        Text(text = "Pages: " + bookUiState.book.volumeInfo.pageCount)
-                        Text(text = "Publisher: " + bookUiState.book.volumeInfo.publisher)
-                        Text(text = "Published date: " + bookUiState.book.volumeInfo.publishedDate)
-                        Text(text = "Language: " + bookUiState.book.volumeInfo.language)
+                        MultiStyleText(
+                            text1 = "Title: ",
+                            text2 = bookUiState.book.volumeInfo.title
+                        )
+                        MultiStyleText(
+                            text1 = "Author(s): ",
+                            text2 = bookUiState.book.volumeInfo.authors?.first()
+                        )
+                        MultiStyleText(
+                            text1 = "Pages: ",
+                            text2 = bookUiState.book.volumeInfo.pageCount.toString()
+                        )
+                        MultiStyleText(
+                            text1 = "Publisher: ",
+                            text2 = bookUiState.book.volumeInfo.publisher
+                        )
+                        MultiStyleText(
+                            text1 = "Published date: ",
+                            text2 = bookUiState.book.volumeInfo.publishedDate
+                        )
+                        MultiStyleText(
+                            text1 = "Language: ",
+                            text2 = bookUiState.book.volumeInfo.language
+                        )
                     }
                 }
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.list_content_padding)))
-                Text(text = "Description: " + bookUiState.book.volumeInfo.description)
+                Text(text = "Description ", style = MaterialTheme.typography.bodyLarge)
+                Text(
+                    text = bookUiState.book.volumeInfo.description ?: "",
+                    style = MaterialTheme.typography.bodyMedium
+                )
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.list_content_padding)))
-                Text(text = "SaleInfo")
-                Text(text = "Country: " + bookUiState.book.saleInfo?.country)
-                Text(text = "Saleability: " + bookUiState.book.saleInfo?.saleability)
-                Text(text = "Ebook available: " + (if (bookUiState.book.saleInfo?.isEbook == true) "Yes" else "No"))
+                Text(text = "SaleInfo", style = MaterialTheme.typography.bodyLarge)
+                MultiStyleText(
+                    text1 = "Country: ",
+                    text2 = bookUiState.book.saleInfo?.country
+                )
+                MultiStyleText(
+                    text1 = "Saleability: ",
+                    text2 = bookUiState.book.saleInfo?.saleability
+                )
+                MultiStyleText(
+                    text1 = "Ebook available: ",
+                    text2 = (if (bookUiState.book.saleInfo?.isEbook == true) "Yes" else "No")
+                )
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.list_content_padding)))
-                Text(text = "AccessInfo")
-                Text(text = "Public domain: " + (if (bookUiState.book.accessInfo?.publicDomain == true) "Yes" else "No"))
-                Text(text = "Text to speed permission: " + bookUiState.book.accessInfo?.textToSpeechPermission)
-                Text(text = "PDF available: " + bookUiState.book.accessInfo?.pdf?.isAvailable)
-                Text(text = "Quote sharing allowed: " + (if (bookUiState.book.accessInfo?.quoteSharingAllowed == true) "Yes" else "No"))
+                Text(text = "AccessInfo", style = MaterialTheme.typography.bodyLarge)
+                MultiStyleText(
+                    text1 = "Public domain: ",
+                    text2 = (if (bookUiState.book.accessInfo?.publicDomain == true) "Yes" else "No")
+                )
+                MultiStyleText(
+                    text1 = "Text to speed permission: ",
+                    text2 = bookUiState.book.accessInfo?.textToSpeechPermission
+                )
+                MultiStyleText(
+                    text1 = "PDF available: ",
+                    text2 = bookUiState.book.accessInfo?.pdf?.isAvailable.toString()
+                )
+                MultiStyleText(
+                    text1 = "Quote sharing allowed: ",
+                    text2 = (if (bookUiState.book.accessInfo?.quoteSharingAllowed == true) "Yes" else "No")
+                )
             }
         }
 
